@@ -3,9 +3,8 @@ const router = express.Router();
 const pool= require("../db")
 const bcrypt=require("bcryptjs");
 const { body, validationResult } = require('express-validator');
-const {sign}=require("jsonwebtoken")
-const env=require('dotenv')
-env.config();
+const jwt = require("jsonwebtoken");
+
 
 router.get("/allusers",async(req,res)=>{
   try {
@@ -115,8 +114,12 @@ router.post("/login", async(req,res) => {
 
   //create the jsonwebtoken
 
-  const token= await sign(payload,process.env.SECRECT)
-  console.log(token)
+  const token = jwt.sign(payload, process.env.SECRET, {
+    expiresIn: "7d",
+  });
+
+  
+  //console.log(token)
 
 
   return res.status(200).cookie('token', token, { httpOnly: true }).json({
