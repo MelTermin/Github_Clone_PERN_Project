@@ -4,6 +4,7 @@ const pool= require("../db")
 const bcrypt=require("bcryptjs");
 const { body, validationResult } = require('express-validator');
 const jwt = require("jsonwebtoken");
+const checkAuth = require ("../middleware/checkAuth");
 
 
 router.get("/allusers",async(req,res)=>{
@@ -104,7 +105,6 @@ router.post("/login", async(req,res) => {
 
   payload={
     id:user.rows[0].user_id,
-    email: user.rows[0].user_email
   }
 
   //check if the payload works properly
@@ -119,10 +119,13 @@ router.post("/login", async(req,res) => {
   });
 
   
-  //console.log(token)
+  console.log(token)
 
 
-  return res.status(200).cookie('token', token, { httpOnly: true }).json({
+  return res.status(200).cookie('token', token, { 
+    httpOnly: true, 
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) })
+    .json({
     success: true,
     message: 'Logged in succefully',
   })
@@ -132,6 +135,29 @@ router.post("/login", async(req,res) => {
   }
   
 
+})
+
+router.get("/current", checkAuth, (req, res) => {
+  try {
+    return res.status(200).json({
+      info: 'protected info',
+      data:req.user
+    })
+  } catch (error) {
+    console.log(error.message)
+  }
+});
+
+router.get("/logout", (req,res)=>{
+  try {
+    return res.status(200).clearCookie('token', { httpOnly: true }).json({
+      success: true,
+      message: 'Logged out succefully',
+    })
+
+  }catch(error) {
+    console.log(error)
+  }
 })
 
 
