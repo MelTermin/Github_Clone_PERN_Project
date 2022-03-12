@@ -117,6 +117,7 @@ router.post("/login", async(req,res) => {
 
   payload={
     id:user.rows[0].user_id,
+    name:user.rows[0].user_name
   }
 
   //check if the payload works properly
@@ -131,13 +132,12 @@ router.post("/login", async(req,res) => {
   });
 
   
-  console.log(token)
+  //console.log(token)
 
 
-  return res.status(200).cookie('token', token, { 
-    httpOnly: true, 
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) })
+  return res.status(200)
     .json({
+    token:token,
     success: true,
     message: 'Logged in succefully',
   })
