@@ -45,7 +45,11 @@ router.post("/register", body("email").isEmail().withMessage("The email is inval
   
     if(user.rows.length !==0) {
       return res.json({
-        msg:"Email is already in use"
+        errors: [
+          {
+            msg: "Email already in use",
+          },
+        ]
       })
     }
   
@@ -79,7 +83,11 @@ router.post("/login", async(req,res) => {
 
   if(user.rows.length ===0) {
     return res.json({
-      msg:"Wrong email entry"
+      errors: [
+        {
+          msg: "Wrong Email entry",
+        },
+      ]
     })
   }
 
@@ -92,7 +100,11 @@ router.post("/login", async(req,res) => {
 
   if (!validPassword) {
     return res.json({
-      msg: "Wrong Password",
+      errors: [
+        {
+          msg: "Wrong Password",
+        },
+      ]
  
     });
   }

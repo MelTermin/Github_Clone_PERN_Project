@@ -1,54 +1,36 @@
-import React, { createContext, useContext, useEffect,useReducer } from "react";
-
-const initialState = {
-  user: null,
-}
+import React, { createContext, useContext, useEffect,useState } from "react";
 
 
-const globalReducer = (state, action) => {
-  switch (action.type) {
-    case "SET_USER":
-      return {
-        ...state,
-        user: action.payload,
-      };
-      case "RESET_USER":
-        return {
-          ...state,
-        };
-    default:
-      return state;
-  }
-};
 
-export const GlobalContext = createContext(initialState);
+export const GlobalContext = createContext();
 
 export const GlobalProvider = ({children}) => {
-  const [state, dispatch] = useReducer(globalReducer, initialState);
+  const [currentUser, setCurrentUser]=useState([])
+  
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
+  // useEffect(() => {
+  //   getCurrentUser();
+  // }, []);
 
-  // action: get current user
-  const getCurrentUser = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/current");
-      const data= await response.json()
-      console.log(data)
+  // // action: get current user
+  // const getCurrentUser = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/current");
+  //     const data= await response.json()
+  //     console.log(data)
 
      
-    } catch (err) {
-      console.log(err);
+  //   } catch (err) {
+  //     console.log(err);
       
-    }
-  };
+  //   }
+  // };
 
 
   
   const value = {
-    ...state,
-    getCurrentUser,
+   
+    // getCurrentUser,
    
 
   };
