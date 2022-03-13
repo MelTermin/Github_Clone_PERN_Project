@@ -5,9 +5,10 @@ import React, { createContext, useContext, useEffect,useState } from "react";
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({children}) => {
+  const [loading, setLoading] = useState(true)
   const [githubUser,setGithubUser]=useState([]);
   const [repos,setRepos]=useState([]);
-  const [followers,setFollowers]=useState([]);
+  const [followersGit,setFollowersGit]=useState([]);
   const [error,setError]=useState("")
  
   
@@ -18,6 +19,7 @@ export const GlobalProvider = ({children}) => {
   },[])
 
   const fetchGithubUser= async (search) => {
+    setLoading(true)
     if(search) {
 
       const response = await fetch (`https://api.github.com/users/${search}`)
@@ -31,13 +33,13 @@ export const GlobalProvider = ({children}) => {
       const response1= await fetch(`https://api.github.com/users/${login}/followers`);
       const data1= await response1.json()
       console.log("followers", data1)
-      setFollowers(data1)
+      setFollowersGit(data1)
 
       const response2= await fetch(`https://api.github.com/users/${login}/repos`);
       const data2= await response2.json()
       console.log("repo", data2)
       setRepos(data2)
-
+      setLoading(false)
         
   
       
@@ -56,8 +58,11 @@ export const GlobalProvider = ({children}) => {
     setGithubUser,
     error,
     setError,
-    followers,
-    setFollowers
+    followersGit,
+    setFollowersGit,
+    repos,
+    loading,
+    setLoading
 
 
   };

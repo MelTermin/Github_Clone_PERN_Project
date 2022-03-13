@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import { useGlobalContext } from "../context/GlobalContext";
+import Detail from './Detail';
 
 
 
 function Search() {
   const [search,setSearchTerm]=useState("");
+  const [click,setClick]=useState(false);
   const {fetchGithubUser,error,setError } = useGlobalContext();
   
 
@@ -15,6 +17,7 @@ function Search() {
       fetchGithubUser(search)
       setSearchTerm("")
       setError("")
+      setClick(true)
 
   }
 
@@ -25,6 +28,7 @@ function Search() {
         {error && <p>{error}</p>}
         <button>Search</button>
       </form>
+      {click && <Detail/>}
      
       </div>
   )

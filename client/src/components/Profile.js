@@ -1,10 +1,11 @@
 import React,{useEffect,useState} from 'react'
-
+// import { useGlobalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+
 import Search from './Search';
 
 function Profile() {
-
+  // const {githubUser} = useGlobalContext();
   const [currentUser, setCurrentUser]=useState([])
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -53,7 +54,7 @@ function Profile() {
         </button>
       </div>
       <Search/>
-
+  
     </div>
     
     
