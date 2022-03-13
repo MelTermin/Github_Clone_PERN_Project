@@ -5,38 +5,60 @@ import React, { createContext, useContext, useEffect,useState } from "react";
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({children}) => {
-  const [currentUser, setCurrentUser]=useState([])
+  const [githubUser,setGithubUser]=useState([]);
+  const [repos,setRepos]=useState([]);
+  const [followers,setFollowers]=useState([]);
+  const [error,setError]=useState("")
+ 
   
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
 
-  // action: get current user
-  const getCurrentUser = async () => {
-    const token = localStorage.getItem("token");
+  useEffect(()=> {
+    fetchGithubUser()
+  },[])
 
-    try {
-      const res = await fetch("http://localhost:5000/api/current", {
-        method: "GET",
-        headers: { token: token }
-      });
-      const parseRes = await res.json();
-      setCurrentUser(parseRes.data,"current") 
+  const fetchGithubUser= async (search) => {
+    if(search) {
 
-     
-    } catch (err) {
-      console.log(err);
+      const response = await fetch (`https://api.github.com/users/${search}`)
+      const data = await response.json()
+      console.log("data", data)
+      setGithubUser(data)
+
+      const { login } = data;
+
+
+      const response1= await fetch(`https://api.github.com/users/${login}/followers`);
+      const data1= await response1.json()
+      console.log("followers", data1)
+      setFollowers(data1)
+
+      const response2= await fetch(`https://api.github.com/users/${login}/repos`);
+      const data2= await response2.json()
+      console.log("repo", data2)
+      setRepos(data2)
+
+        
+  
       
+
+    } else {
+      setError("Please type a name")
     }
-  };
 
 
+  }
+  
   
   const value = {
-   
-    currentUser
-   
+    fetchGithubUser,
+    githubUser,
+    setGithubUser,
+    error,
+    setError,
+    followers,
+    setFollowers
+
 
   };
 

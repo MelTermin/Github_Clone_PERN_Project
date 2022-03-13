@@ -1,1 +1,19 @@
+*{
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+}
 
+.profile-wrapper {
+  border: 2px solid fuchsia;
+  min-height: 100vh;
+}
+
+
+.navbar {
+  border: 2px solid salmon;
+}
+
+.search-wrapper {
+  border: 2px solid green;
+}
