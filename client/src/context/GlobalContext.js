@@ -30,12 +30,12 @@ export const GlobalProvider = ({children}) => {
       const { login } = data;
 
 
-      const response1= await fetch(`https://api.github.com/users/${login}/followers`);
+      const response1= await fetch(`https://api.github.com/users/${login}/followers?per_page=50`);
       const data1= await response1.json()
       console.log("followers", data1)
       setFollowersGit(data1)
 
-      const response2= await fetch(`https://api.github.com/users/${login}/repos`);
+      const response2= await fetch(`https://api.github.com/users/${login}/repos?per_page=50`);
       const data2= await response2.json()
       console.log("repo", data2)
       setRepos(data2)

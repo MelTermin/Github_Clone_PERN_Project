@@ -2,6 +2,7 @@ import React from 'react'
 import { useGlobalContext } from "../context/GlobalContext";
 import { GoRepo, } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi'
+import Charts from './Charts';
 function Detail() {
   const {githubUser,loading, followersGit} = useGlobalContext();
   const { public_repos, followers, following,name,avatar_url,html_url,bio } = githubUser;
@@ -51,6 +52,8 @@ function Detail() {
           )
         })}
       </div>
+
+      <Charts/>
 
       
     </div>
