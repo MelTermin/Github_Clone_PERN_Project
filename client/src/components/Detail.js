@@ -5,7 +5,7 @@ import { FiUsers, FiUserPlus } from 'react-icons/fi'
 
 function Detail() {
   const {githubUser,loading, followersGit} = useGlobalContext();
-  const { public_repos, followers, following,name,avatar_url,html_url,bio } = githubUser;
+  const { public_repos, followers, following,name,avatar_url,html_url,bio,location } = githubUser;
 
   if(loading) {
     return(
@@ -46,24 +46,42 @@ function Detail() {
       </div>
 
       <div className='second-detail-wrapper'>
-        <img src={avatar_url} alt={name}/>
-        <p>{name}</p>
-        <a href={html_url}>follow</a>
-        <p className='bio'>{bio}</p>
+        <div className='user-card'>
+          
+            <img className="user-pic" src={avatar_url} alt={name}/>
+   
+         
+          <div className='name-detail'>
+            <p>{name}</p>
+            <a href={html_url}>Follow</a>
+          </div>
+          
+          <p>{location}</p>
+         
+          <p className='bio'>{bio}</p>
 
-      </div>
+        </div>
 
-      <div className='followers'>
+
+        <div className='profile-card'>
         {followersGit.map((item,index)=>{
           return (
             <div key={index} >
-              <img src={item.avatar_url} alt={item.login}/>
-              <p>{item.login}</p>
-              <p>{item.html_url}</p>
+              <article>
+                <img  className="follower-pic"src={item.avatar_url} alt={item.login}/>
+                <div>
+                  <p>{item.login}</p>
+                  <p>{item.html_url}</p>
+                </div>
+              </article>  
             </div>
           )
         })}
+        </div>
+
       </div>
+
+
 
 
 
