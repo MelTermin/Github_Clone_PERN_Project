@@ -7,7 +7,7 @@ import Detail from './Detail';
 function Search() {
   const [search,setSearchTerm]=useState("");
   const [click,setClick]=useState(false);
-  const {fetchGithubUser,error,setError } = useGlobalContext();
+  const {fetchGithubUser} = useGlobalContext();
   
 
 
@@ -16,7 +16,7 @@ function Search() {
  
       fetchGithubUser(search)
       setSearchTerm("")
-      setError("")
+  
       setClick(true)
 
   }
@@ -24,9 +24,8 @@ function Search() {
   return (
     <div className='search-wrapper'>
       <form onSubmit={searchHandler}>
-        <input type="text" name="name" value= {search} onChange={(e)=>setSearchTerm(e.target.value)}></input>
-        {error && <p>{error}</p>}
-        <button>Search</button>
+        <input type="text" name="name" value= {search} onChange={(e)=>setSearchTerm(e.target.value)} placeholder='Please type username'></input>
+        <button className='btn'>Search</button>
       </form>
       {click && <Detail/>}
      

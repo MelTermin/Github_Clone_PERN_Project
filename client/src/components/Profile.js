@@ -48,8 +48,8 @@ function Profile() {
   return (
     <div className='profile-wrapper'>
       <div className='navbar'>
-        <p>Hello {currentUser.name}</p>
-        <button onClick={e => logout(e)} className="btn btn-primary">
+        <p className='welcome-title'>Welcome {currentUser.name}</p>
+        <button onClick={e => logout(e)} className="btn">
           Logout
         </button>
       </div>

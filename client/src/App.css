@@ -1,24 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
 *{
   box-sizing: border-box;
   margin:0;
   padding: 0;
 }
 
+body {
+  line-height: 1.5;
+  
+  transition: all 0.3s linear;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 .profile-wrapper {
   border: 2px solid fuchsia;
   min-height: 100vh;
+  background: #f1f5f8;
+
 }
 
 
 .navbar {
-  border: 2px solid salmon;
+  /* border: 2px solid salmon; */
+  display:flex;
+  justify-content: space-between;
+  padding: 10px 130px ;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
+}
+.welcome-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.btn {
+ 
+    background: #44869f;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    border-color: transparent;
+    text-transform: capitalize;
+    transition: all 0.3s linear;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+  
 }
 
 .search-wrapper {
-  border: 2px solid green;
+ border: 2px solid green; 
+
+
+}
+
+.search-wrapper form {
+  display:flex;
+  justify-content: space-between;
+  padding: 2rem ;
+  margin: 10px 100px;
+}
+
+.search-wrapper input {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border:none;
 }
 
 .detail-wrapper {
+  background: #f1f5f8;
   border: 2px solid violet;
   display:flex;
   flex-direction: column;
@@ -34,13 +87,32 @@
 }
 
 .card {
-
-  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+  width: 300px;
   background-color: white;
   border-radius: 5px;
-  border: 2px solid rgb(207, 207, 219);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding:10px;
+  margin: 10px 120px;
 
 
+}
+
+.icon {
+  color: #da4a91;
+}
+
+.icon-user {
+  color: rgb(86, 179, 86);
+}
+
+.icon-followers {
+  color: #5d55fa;
+}
+.numbers {
+  font-size: 30px;
+  font-weight: 600;
 }

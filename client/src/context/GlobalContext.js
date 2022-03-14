@@ -9,7 +9,7 @@ export const GlobalProvider = ({children}) => {
   const [githubUser,setGithubUser]=useState([]);
   const [repos,setRepos]=useState([]);
   const [followersGit,setFollowersGit]=useState([]);
-  const [error,setError]=useState("")
+  
  
   
 
@@ -44,9 +44,7 @@ export const GlobalProvider = ({children}) => {
   
       
 
-    } else {
-      setError("Please type a name")
-    }
+    } 
 
 
   }
@@ -56,8 +54,6 @@ export const GlobalProvider = ({children}) => {
     fetchGithubUser,
     githubUser,
     setGithubUser,
-    error,
-    setError,
     followersGit,
     setFollowersGit,
     repos,
