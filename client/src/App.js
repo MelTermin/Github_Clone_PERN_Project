@@ -3,7 +3,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import './App.css';
-import Header from "./components/Header";
+
 import {GlobalProvider} from "./context/GlobalContext"
 
 function App() {
@@ -11,7 +11,6 @@ function App() {
     <div className="">
       <GlobalProvider>
         <Router>
-          <Header/>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />

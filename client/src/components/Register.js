@@ -28,26 +28,26 @@ function Register() {
   }
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        {errors && <small style={{color:"red"}}>{errors}</small>}
+    <div className='login-wrapper'>
+      <form onSubmit={submitHandler} className='login-form'>
+        {errors && <small style={{color:"red",textAlign:"center", marginTop:"20px"}}>{errors}</small>}
         
-        <label>Name</label>
+        <label>Name:</label>
         <input type="text" name="name" placeholder='Please type your name' value={name} onChange={(e)=>setName(e.target.value)}/>
 
-        <label>Email</label>
+        <label>Email:</label>
         <input type="text" name="email" placeholder='Please type your email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
 
-        <label>Password</label>
+        <label>Password:</label>
         <input type="password" name="password" placeholder='Please type your password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
         
-        <div>
+        <div className='register-direction'>
           <p>Registered already ?</p>
-          <Link to="/">Login</Link>
+          <Link className='link' to="/">Login</Link>
         </div>
       
 
-        <button>Submit</button>
+        <button className='btn'>Submit</button>
       </form>
     </div>
   )

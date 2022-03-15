@@ -2,6 +2,7 @@ import React from 'react'
 import { useGlobalContext } from "../context/GlobalContext";
 import { GoRepo, } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi'
+import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 
 function Detail() {
   const {githubUser,loading, followersGit} = useGlobalContext();
@@ -46,27 +47,32 @@ function Detail() {
       </div>
 
       <div className='second-detail-wrapper'>
+       
         <div className='user-card'>
           
-            <img className="user-pic" src={avatar_url} alt={name}/>
-   
-         
-          <div className='name-detail'>
-            <p>{name}</p>
-            <a href={html_url}>Follow</a>
-          </div>
+          <header>
+              <img className="user-pic" src={avatar_url} alt={name}/>
+              <div className='name-detail'>
+                <p style={{fontWeight:"700"}}>{name}</p>
+                <a className='follow' href={html_url}>Follow</a>
+              </div>
+          </header>
           
-          <p>{location}</p>
-         
-          <p className='bio'>{bio}</p>
+          <div className='links'>
+            {location ? ( <p><MdLocationOn/>{location}</p>):(null)}
+           
+            <p className='bio'>{bio}</p> 
+          </div>
 
         </div>
-
-
+       
+    
         <div className='profile-card'>
+         <p style={{fontWeight:"700"}}>Followers:</p>
         {followersGit.map((item,index)=>{
           return (
             <div key={index} >
+              
               <article>
                 <img  className="follower-pic"src={item.avatar_url} alt={item.login}/>
                 <div>
