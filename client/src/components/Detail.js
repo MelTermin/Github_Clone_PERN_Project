@@ -10,7 +10,7 @@ function Detail() {
 
   if(loading) {
     return(
-      <div style={{textAlign:"center", fontSize:"35px"}}>Loading..</div>
+      <div style={{textAlign:"center", fontSize:"35px", marginTop:"200px"}}>Loading..</div>
     ) 
   }
   

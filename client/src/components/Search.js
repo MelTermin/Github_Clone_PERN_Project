@@ -16,7 +16,6 @@ function Search() {
  
       fetchGithubUser(search)
       setSearchTerm("")
-  
       setClick(true)
 
   }
